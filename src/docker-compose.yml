@@ -8,7 +8,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - LISTEN_SOCK=/run/sock/api-1.sock
       - ConnectionStrings__faiss=http://faiss-backend:5000
-    cpuset: "2,3"
+    cpuset: "0,1"
     deploy:
       resources:
         limits:
@@ -39,7 +39,7 @@ services:
       - backend-2
     ports:
       - "9999:9999"
-    cpuset: "2,3"
+    cpuset: "0,2"
     deploy:
       resources:
         limits:
