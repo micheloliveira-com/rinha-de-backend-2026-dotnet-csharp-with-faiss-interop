@@ -3,9 +3,9 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    image: rinha-de-backend-2026-dotnet-csharp-with-faiss:latest
+    image: rinha-de-backend-2026-dotnet-csharp-with-faiss-interop:latest
   backend-2:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    image: rinha-de-backend-2026-dotnet-csharp-with-faiss:latest
+    image: rinha-de-backend-2026-dotnet-csharp-with-faiss-interop:latest
