@@ -5,8 +5,7 @@ on:
 
 env:
   SOURCE_FOLDER: src
-  IMAGE_NAME_1: rinha-de-backend-2026-dotnet-csharp-with-faiss
-  IMAGE_NAME_2: rinha-de-backend-2026-dotnet-csharp-with-python-faiss
+  IMAGE_NAME: rinha-de-backend-2026-dotnet-csharp-with-faiss-interop
 
 jobs:
   docker:
@@ -27,42 +26,27 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build images
+      - name: Build image
         run: |
           cd ${{ env.SOURCE_FOLDER }}
           docker compose build
 
-      - name: Tag images
+      - name: Tag image
         run: |
           TIMESTAMP=$(date +'%Y%m%d%H%M%S')
           REPO=ghcr.io/${{ github.repository_owner }}
 
-          for IMAGE in \
-            ${{ env.IMAGE_NAME_1 }} \
-            ${{ env.IMAGE_NAME_2 }}
-          do
-            SRC_IMAGE=$IMAGE
+          docker tag ${{ env.IMAGE_NAME }} $REPO/${{ env.IMAGE_NAME }}:$TIMESTAMP
+          docker tag ${{ env.IMAGE_NAME }} $REPO/${{ env.IMAGE_NAME }}:latest
 
-            TIMESTAMP_TAG=$REPO/$IMAGE:$TIMESTAMP
-            LATEST_TAG=$REPO/$IMAGE:latest
+          echo "Tagged image"
 
-            docker tag $SRC_IMAGE $TIMESTAMP_TAG
-            docker tag $SRC_IMAGE $LATEST_TAG
-
-            echo "Tagged $IMAGE"
-          done
-
-      - name: Push images
+      - name: Push image
         run: |
           TIMESTAMP=$(date +'%Y%m%d%H%M%S')
           REPO=ghcr.io/${{ github.repository_owner }}
 
-          for IMAGE in \
-            ${{ env.IMAGE_NAME_1 }} \
-            ${{ env.IMAGE_NAME_2 }}
-          do
-            docker push $REPO/$IMAGE:latest
-            docker push $REPO/$IMAGE:$TIMESTAMP
-          done
+          docker push $REPO/${{ env.IMAGE_NAME }}:latest
+          docker push $REPO/${{ env.IMAGE_NAME }}:$TIMESTAMP
 
           echo "TIMESTAMP TAG=$TIMESTAMP"
