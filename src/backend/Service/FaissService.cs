@@ -39,11 +39,12 @@ public class FaissService()
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public int Search(Span<float> vector)
     {
+        const int vectorSearchCount = 1;
         Span<float> distances = stackalloc float[Constant.TOP_K];
         Span<long> ids = stackalloc long[Constant.TOP_K];
 
         Index!.Search(
-            1,
+            vectorSearchCount,
             vector,
             Constant.TOP_K,
             distances,
@@ -59,8 +60,7 @@ public class FaissService()
         return fraudCount;
     }
 
-
-    async Task<(float[][] vectors, sbyte[] labels)>
+    private async Task<(float[][] vectors, sbyte[] labels)>
         LoadDataAsync(string path)
     {
         var vectors = new List<float[]>();
@@ -91,7 +91,7 @@ public class FaissService()
 
                 label = string.Equals(
                     str,
-                    "fraud",
+                    Constant.REFERENCES_FRAUD_VALUE,
                     StringComparison.OrdinalIgnoreCase)
                     ? (sbyte)1
                     : (sbyte)0;
@@ -105,19 +105,19 @@ public class FaissService()
             labelList.ToArray());
     }
 
-    void SaveLabels(string path, sbyte[] labels)
+    private void SaveLabels(string path, sbyte[] labels)
     {
         File.WriteAllBytes(path, labels.Select(x => (byte)x).ToArray());
     }
 
-    sbyte[] LoadLabels(string path)
+    private sbyte[] LoadLabels(string path)
     {
         return File.ReadAllBytes(path)
             .Select(x => (sbyte)x)
             .ToArray();
     }
 
-    async Task TrainAndSaveAsync()
+    private async Task TrainAndSaveAsync()
     {
         Console.WriteLine("[FAISS] loading raw data...");
 
@@ -166,7 +166,7 @@ public class FaissService()
         Console.WriteLine($"[FAISS] ready: {idx.TotalCount}");
     }
 
-    void LoadSaved()
+    private void LoadSaved()
     {
         Console.WriteLine("[FAISS] loading saved index...");
 
