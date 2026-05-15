@@ -26,7 +26,7 @@ public static class WebApplicationWarmupExtensions
         {
             using var scope = app.Services.CreateScope();
             var warmupService = scope.ServiceProvider.GetRequiredService<WarmupService>();
-            await warmupService.Warmup();
+            await warmupService.WarmupAsync();
         });
     }
 }
