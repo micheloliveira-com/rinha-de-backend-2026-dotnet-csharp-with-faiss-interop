@@ -7,7 +7,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - LISTEN_SOCK=/run/sock/api-1.sock
-      - ConnectionStrings__faiss=http://faiss-backend:5000
     cpuset: "0,1"
     deploy:
       resources:
@@ -22,7 +21,6 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - LISTEN_SOCK=/run/sock/api-2.sock
-      - ConnectionStrings__faiss=http://faiss-backend:5000
     cpuset: "2,3"
     deploy:
       resources:
