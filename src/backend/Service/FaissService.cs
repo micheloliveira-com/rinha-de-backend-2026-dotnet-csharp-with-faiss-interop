@@ -59,7 +59,6 @@ public class FaissService()
 
         return fraudCount;
     }
-
     private async Task<(float[][] vectors, sbyte[] labels)>
         LoadDataAsync(string path)
     {
@@ -83,19 +82,12 @@ public class FaissService()
 
             vectors.Add(item.Vector);
 
-            sbyte label = 0;
-
-            if (item.Label.ValueKind == JsonValueKind.String)
-            {
-                var str = item.Label.GetString();
-
-                label = string.Equals(
-                    str,
-                    Constant.REFERENCES_FRAUD_VALUE,
-                    StringComparison.OrdinalIgnoreCase)
-                    ? (sbyte)1
-                    : (sbyte)0;
-            }
+            sbyte label = string.Equals(
+                item.Label,
+                Constant.REFERENCES_FRAUD_VALUE,
+                StringComparison.OrdinalIgnoreCase)
+                ? (sbyte)1
+                : (sbyte)0;
 
             labelList.Add(label);
         }
