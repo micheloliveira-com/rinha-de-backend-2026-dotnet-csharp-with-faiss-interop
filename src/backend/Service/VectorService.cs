@@ -63,6 +63,19 @@ public class VectorService(
             Clamp(merchant.AvgAmount / normalizationConfig.MaxMerchantAvgAmount);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private DateTime ParseIsoUtc(string s)
+    {
+        int y = (s[0] - '0') * 1000 + (s[1] - '0') * 100 + (s[2] - '0') * 10 + (s[3] - '0');
+        int M = (s[5] - '0') * 10 + (s[6] - '0');
+        int d = (s[8] - '0') * 10 + (s[9] - '0');
+        int h = (s[11] - '0') * 10 + (s[12] - '0');
+        int m = (s[14] - '0') * 10 + (s[15] - '0');
+        int sec = (s[17] - '0') * 10 + (s[18] - '0');
+
+        return new DateTime(y, M, d, h, m, sec, DateTimeKind.Utc);
+    }
+    
     private readonly struct VectorIndex
     {
         public const int AmountNormalized = 0;
@@ -81,16 +94,4 @@ public class VectorService(
         public const int MerchantAvgAmount = 13;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private DateTime ParseIsoUtc(string s)
-    {
-        int y = (s[0] - '0') * 1000 + (s[1] - '0') * 100 + (s[2] - '0') * 10 + (s[3] - '0');
-        int M = (s[5] - '0') * 10 + (s[6] - '0');
-        int d = (s[8] - '0') * 10 + (s[9] - '0');
-        int h = (s[11] - '0') * 10 + (s[12] - '0');
-        int m = (s[14] - '0') * 10 + (s[15] - '0');
-        int sec = (s[17] - '0') * 10 + (s[18] - '0');
-
-        return new DateTime(y, M, d, h, m, sec, DateTimeKind.Utc);
-    }
 }

@@ -50,11 +50,8 @@ public record NormalizationConfig(
     [property: JsonPropertyName("max_tx_count_24h")] double MaxTxCount24h,
     [property: JsonPropertyName("max_merchant_avg_amount")] double MaxMerchantAvgAmount);
 
-public sealed class ReferenceItem
-{
-    public float[] Vector { get; set; } = Array.Empty<float>();
-    public JsonElement Label { get; set; }
-}
+
+public record ReferenceItem(float[] Vector, string Label);
 
 public record MccRiskConfig(Dictionary<string, float> Values);
 

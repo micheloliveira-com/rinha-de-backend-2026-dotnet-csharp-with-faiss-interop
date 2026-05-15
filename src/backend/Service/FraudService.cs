@@ -1,19 +1,25 @@
 public class FraudService(
-    FaissClient faissClient,
+    FaissService faissService,
     VectorService vectorService
 )
 {
-    public async Task<FraudResponse> ProcessAsync(FraudRequest fraudRequest)
+    public FraudResponse Process(FraudRequest fraudRequest)
     {
-        /*var vector = vectorService.BuildVector(fraudRequest);
+        Span<float> vector =
+            stackalloc float[Constant.VECTOR_DIM];
+            
+        vectorService
+            .BuildVector(fraudRequest, vector);
 
-        var result = await faissClient.QueryAsync(vector);
+        var fraudCount =
+            faissService.Search(vector);
 
-        var score = result.FraudCount / 5.0f;*/
+        var score =
+            fraudCount / Constant.TOP_K_F;
 
         return new FraudResponse(
-            Approved: false,
-            FraudScore: 0
-        );
+                Approved: score < Constant.SCORE_APPROVED_THRESHOLD,
+                FraudScore: score
+            );
     }
 }

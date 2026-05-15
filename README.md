@@ -1,1 +1,2 @@
 # rinha-de-backend-2026-dotnet-csharp-with-native-faiss
+Em construção.

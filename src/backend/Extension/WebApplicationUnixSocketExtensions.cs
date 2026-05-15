@@ -13,12 +13,14 @@ public static class WebApplicationUnixSocketExtensions
         {
             if (!File.Exists(socketPath))
                 return;
+            #pragma warning disable CA1416
             File.SetUnixFileMode(
                 socketPath,
                 UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.UserExecute |
                 UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.GroupExecute |
                 UnixFileMode.OtherRead | UnixFileMode.OtherWrite | UnixFileMode.OtherExecute
             );
+            #pragma warning restore CA1416
         });
 
         return app;

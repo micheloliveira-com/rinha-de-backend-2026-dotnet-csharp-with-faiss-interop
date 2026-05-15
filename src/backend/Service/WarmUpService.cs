@@ -1,11 +1,11 @@
-public class WarmupService(FaissClient faissClient)
+public class WarmupService(FaissService faissService)
 {
-    public async Task Warmup()
+    public async Task WarmupAsync()
     {
-        /*Console.WriteLine("[FAISS] Starting warmup batch...");
+        Console.WriteLine("[FAISS] Starting warmup batch...");
 
         var rand = new Random();
-        var vector = new float[Constant.VECTOR_SIZE]; // reused buffer
+        var vector = new float[Constant.VECTOR_DIM];
 
         for (int i = 0; i < 100; i++)
         {
@@ -16,7 +16,7 @@ public class WarmupService(FaissClient faissClient)
 
             try
             {
-                await faissClient.QueryAsync(vector);
+                faissService.Search(vector);
             }
             catch (Exception ex)
             {
@@ -25,6 +25,6 @@ public class WarmupService(FaissClient faissClient)
             }
         }
 
-        Console.WriteLine("[FAISS] Warmup batch completed successfully.");*/
+        Console.WriteLine("[FAISS] Warmup batch completed successfully.");
     }
 }
