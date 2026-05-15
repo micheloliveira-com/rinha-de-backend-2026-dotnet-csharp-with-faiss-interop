@@ -18,7 +18,7 @@ public class FraudService(
             fraudCount / Constant.TOP_K_F;
 
         return new FraudResponse(
-                Approved: score < 0.6f,
+                Approved: score < Constant.SCORE_APPROVED_THRESHOLD,
                 FraudScore: score
             );
     }

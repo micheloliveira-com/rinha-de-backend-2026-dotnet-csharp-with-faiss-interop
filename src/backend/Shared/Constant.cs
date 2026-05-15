@@ -8,6 +8,7 @@ public static class Constant
     public const string LISTEN_SOCK_ENV_VAR_NAME = "LISTEN_SOCK";
     public const string ONLY_REBUILD_ENV_VAR_NAME = "ONLY_REBUILD";
     public const string ONLY_REBUILD_ENV_VAR_VALUE = "1";
+    public const float SCORE_APPROVED_THRESHOLD = 0.6f;
     public const int VECTOR_DIM = 14;
     public const int TOP_K = 5;
     public const float TOP_K_F = TOP_K;
