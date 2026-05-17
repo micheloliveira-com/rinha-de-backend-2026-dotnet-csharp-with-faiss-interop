@@ -1,6 +1,6 @@
 services:
   backend-1:
-    image: ghcr.io/micheloliveira-com/rinha-de-backend-2026-dotnet-csharp-with-faiss-interop:20260517214739
+    image: ghcr.io/micheloliveira-com/rinha-de-backend-2026-dotnet-csharp-with-faiss-interop:20260517220810
     hostname: backend-1
     volumes:
       - sock:/run/sock
@@ -14,7 +14,7 @@ services:
           cpus: "0.4"
           memory: "160MB"
   backend-2:
-    image: ghcr.io/micheloliveira-com/rinha-de-backend-2026-dotnet-csharp-with-faiss-interop:20260517214739
+    image: ghcr.io/micheloliveira-com/rinha-de-backend-2026-dotnet-csharp-with-faiss-interop:20260517220810
     hostname: backend-2
     volumes:
       - sock:/run/sock
