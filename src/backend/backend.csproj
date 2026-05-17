@@ -41,20 +41,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  
-  <ItemGroup>
-    <Content Include="native\linux-x64\native\libfaiss_c.so">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
-      <TargetPath>libfaiss_c.so</TargetPath>
-    </Content>
-  </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="native\linux-x64\native\libfaiss.so">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
-      <TargetPath>libfaiss.so</TargetPath>
-    </Content>
-  </ItemGroup>
 </Project>
