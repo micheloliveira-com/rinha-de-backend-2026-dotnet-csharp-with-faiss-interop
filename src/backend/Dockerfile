@@ -92,9 +92,9 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-ENV OMP_NUM_THREADS=4 \
-    MKL_NUM_THREADS=4 \
-    OPENBLAS_NUM_THREADS=4
+ENV OMP_NUM_THREADS=2 \
+    MKL_NUM_THREADS=2 \
+    OPENBLAS_NUM_THREADS=2
 
 EXPOSE 8080
 
