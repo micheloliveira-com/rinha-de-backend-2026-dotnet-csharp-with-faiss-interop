@@ -41,28 +41,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="native\linux-x64\native\libfaiss_c.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+      <TargetPath>libfaiss_c.so</TargetPath>
+    </Content>
+  </ItemGroup>
 
-  <Target Name="CopyFaissLibrariesBuild" AfterTargets="Build">
-
-    <ItemGroup>
-      <FaissLibraries Include="$(ProjectDir)native/linux-x64/native/*" />
-    </ItemGroup>
-
-    <Copy
-      SourceFiles="@(FaissLibraries)"
-      DestinationFolder="$(OutputPath)runtimes/linux-x64/native/" />
-
-  </Target>
-
-  <Target Name="CopyFaissLibrariesPublish" AfterTargets="Publish">
-
-    <ItemGroup>
-      <FaissLibraries Include="$(ProjectDir)native/linux-x64/native/*" />
-    </ItemGroup>
-
-    <Copy
-      SourceFiles="@(FaissLibraries)"
-      DestinationFolder="$(PublishDir)" />
-
-  </Target>
+  <ItemGroup>
+    <Content Include="native\linux-x64\native\libfaiss.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+      <TargetPath>libfaiss.so</TargetPath>
+    </Content>
+  </ItemGroup>
 </Project>
