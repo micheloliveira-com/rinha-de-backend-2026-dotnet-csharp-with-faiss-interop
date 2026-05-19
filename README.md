@@ -29,7 +29,7 @@ Artigos sobre o desafio e insights:
 
 ```mermaid
 flowchart LR
-    client[Teste]
+    client[Cliente]
     lb[HAProxy]
 
     subgraph api_cluster["APIs C# Native AOT"]
@@ -72,7 +72,7 @@ Responsabilidades:
 
 ## Fluxo de requisição
 
-1. Teste k6 envia a requisição para o HAProxy
+1. Cliente envia a requisição para o HAProxy
 2. HAProxy distribui para API 1 ou API 2
 3. API processa requisição vetorizada
 4. API executa busca vetorial FAISS
