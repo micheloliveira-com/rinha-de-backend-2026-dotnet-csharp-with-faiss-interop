@@ -129,7 +129,7 @@ src/backend/Resources/normalization.json
 ### Resources gerados com a base oficial references.json.gz
 
 ```bash
-src/backend/Resources/references.faiss
+src/backend/Resources/train/references.faiss
 src/backend/Resources/train/labels.bin
 ```
 
